@@ -88,7 +88,7 @@ pnpm --filter front run dev
 
 ## 🤝 Contributing
 
-Ensure you always use conventional commits. For more info, see (this website)[https://www.conventionalcommits.org/en/v1.0.0/]
+Ensure you always use conventional commits. For more info, see [this website](https://www.conventionalcommits.org/en/v1.0.0/)
 
 1. Create a new branch from `main` using `git checkout -b feat/my-new-feature`
 2. Commit your changes: `git commit -m 'feat: added my new beautiful feature'`
