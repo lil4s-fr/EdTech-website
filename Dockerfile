@@ -2,7 +2,7 @@
 FROM node:24-bookworm-slim AS base
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
-RUN npm install -g pnpm@latest
+RUN npm install -g pnpm@10.28.2
 
 # ==========================================
 # Build Stage
