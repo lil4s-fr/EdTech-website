@@ -33,17 +33,19 @@ ENV NODE_ENV=production
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
-# Copy the standalone build (this contains server.js at the root)
+# 1. Copy the core standalone build
 COPY --from=build --chown=node:node /app/front/.next/standalone ./
-# Copy public assets to the root/public
+
+# 2. Move/Copy public and static assets INTO the standalone structure
+# The server.js in /app/server.js expects these folders to be at:
+# /app/public and /app/.next/static
+# If your standalone folder contains a nested .next folder, ensure they land there:
 COPY --from=build --chown=node:node /app/front/public ./public
-# Copy static assets (standalone usually handles this, but keeping it safe)
 COPY --from=build --chown=node:node /app/front/.next/static ./.next/static
 
 USER node
 EXPOSE 3000
 
-# Fix: Point to the server.js in the current WORKDIR (/app)
 CMD ["node", "server.js"]
 
 # ==========================================
