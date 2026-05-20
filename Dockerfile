@@ -21,7 +21,7 @@ ARG NEXT_PUBLIC_API_URL
 ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
 
 RUN pnpm run -r build
-RUN pnpm deploy --filter=back --prod /prod/back
+RUN pnpm deploy --filter=back --prod --legacy /prod/back
 
 # ==========================================
 # Runner Stage: Next.js (Front)
