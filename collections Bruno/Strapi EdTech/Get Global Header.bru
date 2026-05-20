@@ -1,0 +1,15 @@
+meta {
+  name: Get Global Header
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://localhost:1337/api/global-header
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}

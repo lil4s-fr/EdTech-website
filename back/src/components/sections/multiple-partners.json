@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_sections_multiple_partners",
+  "info": {
+    "displayName": "MultiplePartners",
+    "icon": "briefcase"
+  },
+  "options": {},
+  "attributes": {
+    "Partner": {
+      "type": "component",
+      "component": "elements.partner",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

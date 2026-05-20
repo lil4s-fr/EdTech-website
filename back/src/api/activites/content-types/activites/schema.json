@@ -1,0 +1,25 @@
+{
+  "kind": "singleType",
+  "collectionName": "activities",
+  "info": {
+    "singularName": "activites",
+    "pluralName": "activities",
+    "displayName": "Activités"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Actions": {
+      "type": "component",
+      "component": "sections.actions",
+      "repeatable": false
+    },
+    "Valeurs": {
+      "type": "component",
+      "component": "sections.values",
+      "repeatable": false
+    }
+  }
+}

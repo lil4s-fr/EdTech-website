@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_elements_membership_plans",
+  "info": {
+    "displayName": "MembershipPlan",
+    "icon": "manyToMany"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Subtitle": {
+      "type": "string"
+    },
+    "Price": {
+      "type": "string"
+    },
+    "ButtonLabel": {
+      "type": "string"
+    },
+    "ButtonLink": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

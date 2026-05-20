@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "organisations",
+  "info": {
+    "singularName": "organisation",
+    "pluralName": "organisations",
+    "displayName": "Organisation"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "Logo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "Link": {
+      "type": "string"
+    },
+    "Category": {
+      "type": "enumeration",
+      "enum": [
+        "partner",
+        "member"
+      ]
+    }
+  }
+}

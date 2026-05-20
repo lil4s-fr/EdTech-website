@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_elements_highlight_cards",
+  "info": {
+    "displayName": "HighlightCard",
+    "icon": "crown"
+  },
+  "options": {},
+  "attributes": {
+    "Image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "AltText": {
+      "type": "string"
+    },
+    "Link": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

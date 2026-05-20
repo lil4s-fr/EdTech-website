@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_elements_partners",
+  "info": {
+    "displayName": "Partner",
+    "icon": "briefcase"
+  },
+  "options": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "Logo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "Link": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

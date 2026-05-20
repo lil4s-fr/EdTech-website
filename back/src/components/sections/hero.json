@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_sections_heroes",
+  "info": {
+    "displayName": "Hero",
+    "icon": "file"
+  },
+  "options": {},
+  "attributes": {
+    "Heading": {
+      "type": "string"
+    },
+    "Description": {
+      "type": "text"
+    },
+    "BackgroundImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "CTA": {
+      "type": "component",
+      "component": "elements.button",
+      "repeatable": false
+    },
+    "ShowScrollIndicator": {
+      "type": "boolean"
+    }
+  },
+  "config": {}
+}

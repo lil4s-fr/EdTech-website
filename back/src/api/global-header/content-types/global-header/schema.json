@@ -1,0 +1,45 @@
+{
+  "kind": "singleType",
+  "collectionName": "global_headers",
+  "info": {
+    "singularName": "global-header",
+    "pluralName": "global-headers",
+    "displayName": "GlobalHeader"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "LogoForLightBg": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "LogoForDarkBg": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "Navigation": {
+      "type": "component",
+      "component": "elements.menu-item",
+      "repeatable": true
+    },
+    "HeaderActions": {
+      "type": "component",
+      "component": "elements.button",
+      "repeatable": true
+    }
+  }
+}

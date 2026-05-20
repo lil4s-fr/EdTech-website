@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_sections_actions",
+  "info": {
+    "displayName": "Actions",
+    "icon": "arrowUp"
+  },
+  "options": {},
+  "attributes": {
+    "SectionTitle": {
+      "type": "string"
+    },
+    "Cards": {
+      "type": "component",
+      "component": "elements.info-card",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

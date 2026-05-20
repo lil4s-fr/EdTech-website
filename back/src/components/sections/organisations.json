@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_sections_organisations",
+  "info": {
+    "displayName": "Organisations"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Description": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

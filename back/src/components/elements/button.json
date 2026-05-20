@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_elements_buttons",
+  "info": {
+    "displayName": "Button",
+    "icon": "cursor"
+  },
+  "options": {},
+  "attributes": {
+    "Label": {
+      "type": "string",
+      "maxLength": 20
+    },
+    "URL": {
+      "type": "string"
+    },
+    "Type": {
+      "type": "enumeration",
+      "required": true,
+      "default": "primary",
+      "enum": [
+        "primary",
+        "secondary",
+        "outline",
+        "white"
+      ]
+    },
+    "IsExternal": {
+      "type": "boolean"
+    }
+  },
+  "config": {}
+}

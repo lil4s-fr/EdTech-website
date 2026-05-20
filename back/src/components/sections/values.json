@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_sections_values",
+  "info": {
+    "displayName": "Values",
+    "icon": "arrowUp"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Cards": {
+      "type": "component",
+      "component": "elements.info-card",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

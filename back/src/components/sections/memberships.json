@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_sections_memberships",
+  "info": {
+    "displayName": "Memberships",
+    "icon": "manyToMany"
+  },
+  "options": {},
+  "attributes": {
+    "MainTitle": {
+      "type": "string"
+    },
+    "SubTitle": {
+      "type": "string"
+    },
+    "Plans": {
+      "type": "component",
+      "component": "elements.membership-plan",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

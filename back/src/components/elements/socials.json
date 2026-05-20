@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_elements_socials",
+  "info": {
+    "displayName": "Socials",
+    "icon": "alien"
+  },
+  "options": {},
+  "attributes": {
+    "Platform": {
+      "type": "enumeration",
+      "enum": [
+        "X",
+        "LinkedIn",
+        "Facebook"
+      ]
+    },
+    "Link": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

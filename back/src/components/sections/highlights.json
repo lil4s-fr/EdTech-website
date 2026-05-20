@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_sections_highlights",
+  "info": {
+    "displayName": "Highlights",
+    "icon": "crown"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "text"
+    },
+    "Highlights": {
+      "type": "component",
+      "component": "elements.highlight-card",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}
