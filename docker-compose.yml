@@ -64,7 +64,12 @@ services:
       - STRAPI_API_TOKEN=${STRAPI_API_TOKEN}
     depends_on:
       - back
-    # Front only needs to talk to the proxy
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:3000').then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
     networks:
       - public_net
 
@@ -79,8 +84,10 @@ services:
       - caddy_data:/data
       - caddy_config:/config
     depends_on:
-      - front
-      - back
+      front:
+        condition: service_healthy
+      back:
+        condition: service_started
     # Proxy bridges the outside world to the frontend/backend
     networks:
       - public_net

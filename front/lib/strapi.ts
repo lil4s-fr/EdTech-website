@@ -12,8 +12,15 @@ export async function fetchStrapi(endpoint: string, options: RequestInit = {}) {
     'Content-Type': 'application/json',
   };
 
-  // Attach the API token when available (set STRAPI_API_TOKEN in .env.local)
+  // Attach the API token when available
   const token = process.env.STRAPI_API_TOKEN;
+  
+  // Debug logging (remove after confirming it works)
+  if (isServer) {
+    console.log('[fetchStrapi] URL:', url);
+    console.log('[fetchStrapi] Token present:', !!token, 'Length:', token?.length ?? 0);
+  }
+  
   if (token) {
     defaultHeaders['Authorization'] = `Bearer ${token}`;
   }
@@ -26,9 +33,11 @@ export async function fetchStrapi(endpoint: string, options: RequestInit = {}) {
   const response = await fetch(url, {
     ...options,
     headers,
+    cache: 'no-store', // Disable Next.js fetch caching
   });
 
   if (!response.ok) {
+    console.error('[fetchStrapi] Error:', response.status, response.statusText);
     throw new Error(`Error fetching ${url}: ${response.statusText}`);
   }
 
