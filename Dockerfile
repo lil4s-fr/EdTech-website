@@ -26,8 +26,6 @@ RUN pnpm deploy --filter=back --prod --legacy /prod/back
 # ==========================================
 # Runner Stage: Next.js (Front)
 # ==========================================
-# Runner Stage: Next.js (Front)
-# ==========================================
 FROM base AS front
 WORKDIR /app
 
@@ -35,18 +33,25 @@ ENV NODE_ENV=production
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
-# 1. Copy the standalone output (this brings in /app/front/server.js)
+# Standalone output structure (with outputFileTracingRoot = workspace root):
+#   .next/standalone/
+#     ├── front/
+#     │   ├── server.js          ← entry point
+#     │   └── .next/             ← server chunks
+#     ├── node_modules/          ← hoisted deps
+#     └── package.json
 COPY --from=build --chown=node:node /app/front/.next/standalone ./
 
-# 2. Copy static and public files to where the nested server.js expects them
+# Static assets and public folder must sit next to server.js
 COPY --from=build --chown=node:node /app/front/.next/static ./front/.next/static
 COPY --from=build --chown=node:node /app/front/public ./front/public
 
 USER node
 EXPOSE 3000
 
-# 3. Run the server from its nested location
-CMD ["node", "front/server.js"]
+# Run from the front/ directory so Next can resolve .next/static and public/ relatively
+WORKDIR /app/front
+CMD ["node", "server.js"]
 
 # ==========================================
 # Runner Stage: Strapi (Back)
