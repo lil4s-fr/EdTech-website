@@ -33,19 +33,19 @@ ENV NODE_ENV=production
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
-# 1. Copy the core standalone build
-COPY --from=build --chown=node:node /app/front/.next/standalone ./
+# 1. Copy the contents of the standalone folder to /app
+# Adjust 'front' if your folder structure inside the build container is different
+COPY --from=build --chown=node:node /app/front/.next/standalone/ ./
 
-# 2. Move/Copy public and static assets INTO the standalone structure
-# The server.js in /app/server.js expects these folders to be at:
-# /app/public and /app/.next/static
-# If your standalone folder contains a nested .next folder, ensure they land there:
+# 2. Copy public and static assets into the newly moved structure
+# (The standalone server expects these to be in these specific paths)
 COPY --from=build --chown=node:node /app/front/public ./public
 COPY --from=build --chown=node:node /app/front/.next/static ./.next/static
 
 USER node
 EXPOSE 3000
 
+# Now 'server.js' will exist at /app/server.js
 CMD ["node", "server.js"]
 
 # ==========================================
