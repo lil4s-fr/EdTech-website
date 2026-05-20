@@ -43,7 +43,7 @@ services:
       - DATABASE_USERNAME=strapi_user
       - DATABASE_PASSWORD=${POSTGRES_PASSWORD}
     volumes:
-      - strapi_uploads:/app/public/uploads
+      - strapi_uploads:/app/public
     # Connects to both DB and the public-facing proxy
     networks:
       - database_net
