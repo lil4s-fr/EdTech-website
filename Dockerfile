@@ -26,6 +26,8 @@ RUN pnpm deploy --filter=back --prod --legacy /prod/back
 # ==========================================
 # Runner Stage: Next.js (Front)
 # ==========================================
+# Runner Stage: Next.js (Front)
+# ==========================================
 FROM base AS front
 WORKDIR /app
 
@@ -33,19 +35,18 @@ ENV NODE_ENV=production
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
-# 1. Use the '/.' syntax to copy the CONTENTS of standalone into /app
-# If your build stage has the files at /app/front/.next/standalone, use this:
-COPY --from=build --chown=node:node /app/front/.next/standalone/. ./
+# 1. Copy the standalone output (this brings in /app/front/server.js)
+COPY --from=build --chown=node:node /app/front/.next/standalone ./
 
-# 2. If 'public' or 'static' weren't included in the standalone folder
-# (which they often aren't by default), copy them manually to their expected locations
-COPY --from=build --chown=node:node /app/front/public ./public
-COPY --from=build --chown=node:node /app/front/.next/static ./.next/static
+# 2. Copy static and public files to where the nested server.js expects them
+COPY --from=build --chown=node:node /app/front/.next/static ./front/.next/static
+COPY --from=build --chown=node:node /app/front/public ./front/public
 
 USER node
 EXPOSE 3000
 
-CMD ["node", "server.js"]
+# 3. Run the server from its nested location
+CMD ["node", "front/server.js"]
 
 # ==========================================
 # Runner Stage: Strapi (Back)
