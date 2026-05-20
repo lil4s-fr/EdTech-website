@@ -17,8 +17,8 @@ COPY . .
 RUN pnpm install -r --offline --frozen-lockfile
 
 # FIX 1: Accept the build argument and expose it to the build environment
-ARG NEXT_PUBLIC_API_URL
-ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
+ARG NEXT_PUBLIC_STRAPI_URL
+ENV NEXT_PUBLIC_STRAPI_URL=$NEXT_PUBLIC_STRAPI_URL
 
 RUN pnpm run -r build
 RUN pnpm deploy --filter=back --prod --legacy /prod/back

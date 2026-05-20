@@ -22,8 +22,6 @@ services:
     build:
       context: .
       target: back
-      args:
-        NEXT_PUBLIC_API_URL: https://backoffice.wubrg.online
     restart: unless-stopped
     depends_on:
       db:
@@ -53,10 +51,19 @@ services:
     build:
       context: .
       target: front
-      # FIX 1: Pass the variable directly into the Build Stage
       args:
-        NEXT_PUBLIC_API_URL: https://backoffice.wubrg.online
+        # Baked into JS at build time for client-side fetches
+        NEXT_PUBLIC_STRAPI_URL: https://backoffice.wubrg.online
     restart: unless-stopped
+    environment:
+      # Internal Docker URL for server-side fetches (SSR/RSC)
+      - STRAPI_INTERNAL_URL=http://back:1337
+      # Public URL for any client-side JS that slips through
+      - NEXT_PUBLIC_STRAPI_URL=https://backoffice.wubrg.online
+      # API token for authenticated requests (bypasses Public role permissions)
+      - STRAPI_API_TOKEN=${STRAPI_API_TOKEN}
+    depends_on:
+      - back
     # Front only needs to talk to the proxy
     networks:
       - public_net

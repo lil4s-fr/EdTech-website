@@ -1,5 +1,11 @@
 export async function fetchStrapi(endpoint: string, options: RequestInit = {}) {
-  const baseUrl = process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337';
+  // Server-side: use internal Docker URL (or localhost for dev)
+  // Client-side: use public URL
+  const isServer = typeof window === 'undefined';
+  const baseUrl = isServer
+    ? (process.env.STRAPI_INTERNAL_URL || process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337')
+    : (process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337');
+  
   const url = `${baseUrl}${endpoint}`;
 
   const defaultHeaders: Record<string, string> = {
