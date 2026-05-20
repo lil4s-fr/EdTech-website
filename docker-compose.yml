@@ -53,13 +53,13 @@ services:
       target: front
       args:
         # Baked into JS at build time for client-side fetches
-        NEXT_PUBLIC_STRAPI_URL: https://backoffice.wubrg.online
+        NEXT_PUBLIC_STRAPI_URL: ${NEXT_PUBLIC_STRAPI_URL}
     restart: unless-stopped
     environment:
       # Internal Docker URL for server-side fetches (SSR/RSC)
       - STRAPI_INTERNAL_URL=http://back:1337
       # Public URL for any client-side JS that slips through
-      - NEXT_PUBLIC_STRAPI_URL=https://backoffice.wubrg.online
+      - NEXT_PUBLIC_STRAPI_URL=${NEXT_PUBLIC_STRAPI_URL}
       # API token for authenticated requests (bypasses Public role permissions)
       - STRAPI_API_TOKEN=${STRAPI_API_TOKEN}
     depends_on:
