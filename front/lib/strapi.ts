@@ -2,9 +2,15 @@ export async function fetchStrapi(endpoint: string, options: RequestInit = {}) {
   const baseUrl = process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337';
   const url = `${baseUrl}${endpoint}`;
 
-  const defaultHeaders = {
+  const defaultHeaders: Record<string, string> = {
     'Content-Type': 'application/json',
   };
+
+  // Attach the API token when available (set STRAPI_API_TOKEN in .env.local)
+  const token = process.env.STRAPI_API_TOKEN;
+  if (token) {
+    defaultHeaders['Authorization'] = `Bearer ${token}`;
+  }
 
   const headers = {
     ...defaultHeaders,

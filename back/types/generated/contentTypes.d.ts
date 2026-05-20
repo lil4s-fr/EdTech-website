@@ -430,6 +430,68 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiActivitesActivites extends Struct.SingleTypeSchema {
+  collectionName: 'activities';
+  info: {
+    displayName: 'Activit\u00E9s';
+    pluralName: 'activities';
+    singularName: 'activites';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Actions: Schema.Attribute.Component<'sections.actions', false>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::activites.activites'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Valeurs: Schema.Attribute.Component<'sections.values', false>;
+  };
+}
+
+export interface ApiFooterFooter extends Struct.SingleTypeSchema {
+  collectionName: 'footers';
+  info: {
+    displayName: 'Footer';
+    pluralName: 'footers';
+    singularName: 'footer';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    ContactEmail: Schema.Attribute.String;
+    ContactPhone: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::footer.footer'
+    > &
+      Schema.Attribute.Private;
+    NewsletterButtonText: Schema.Attribute.String;
+    NewsletterPlaceholder: Schema.Attribute.String;
+    NewsletterTitle: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    Socials: Schema.Attribute.Component<'elements.socials', true>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiGlobalHeaderGlobalHeader extends Struct.SingleTypeSchema {
   collectionName: 'global_headers';
   info: {
@@ -477,7 +539,12 @@ export interface ApiHomepageHomepage extends Struct.SingleTypeSchema {
   };
   attributes: {
     Blocks: Schema.Attribute.DynamicZone<
-      ['sections.hero', 'sections.multiple-partners']
+      [
+        'sections.hero',
+        'sections.multiple-partners',
+        'sections.highlights',
+        'sections.memberships',
+      ]
     >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -488,6 +555,38 @@ export interface ApiHomepageHomepage extends Struct.SingleTypeSchema {
       'api::homepage.homepage'
     > &
       Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiOrganisationOrganisation
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'organisations';
+  info: {
+    displayName: 'Organisation';
+    pluralName: 'organisations';
+    singularName: 'organisation';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Category: Schema.Attribute.Enumeration<['partner', 'member']>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Link: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::organisation.organisation'
+    > &
+      Schema.Attribute.Private;
+    Logo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    Name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1005,8 +1104,11 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::activites.activites': ApiActivitesActivites;
+      'api::footer.footer': ApiFooterFooter;
       'api::global-header.global-header': ApiGlobalHeaderGlobalHeader;
       'api::homepage.homepage': ApiHomepageHomepage;
+      'api::organisation.organisation': ApiOrganisationOrganisation;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

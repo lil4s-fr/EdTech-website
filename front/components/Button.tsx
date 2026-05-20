@@ -21,8 +21,8 @@ export default function Button({
     // L'outline pour le "Petit Guide IA"
     outline: "border-3 border-black bg-black/10 backdrop-blur-md text-black hover:bg-black/20",
 
-    // Nouveau Secondary : Bleu foncé "Deep Night"
-    secondary: "bg-[#1A1C4C] text-white border border-[#2E3192]/30 hover:bg-[#242766] hover:shadow-lg transition-all",
+    // Nouveau Secondary : Bleu foncé "Deep Night" gradient
+    secondary: "bg-gradient-to-r from-[#1A1C4C] via-[#242766] to-[#2E3192] text-white hover:brightness-110 hover:shadow-lg active:scale-95",
   };
 
   if (isExternal){

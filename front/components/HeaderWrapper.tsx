@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
+import { ScrollProvider, useScrolled } from "./ScrollContext";
 
 interface HeaderWrapperProps {
     children: React.ReactNode;
@@ -11,14 +11,9 @@ interface HeaderWrapperProps {
     logoDarkAlt: string;
 }
 
-export default function HeaderWrapper({ children, logoLightUrl, logoLightAlt, logoDarkUrl, logoDarkAlt }: HeaderWrapperProps) {
-    const [scrolled, setScrolled] = useState(false);
-
-    useEffect(() => {
-        const handleScroll = () => setScrolled(window.scrollY > 10);
-        window.addEventListener("scroll", handleScroll, { passive: true });
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+// Inner component that can safely call useScrolled() inside the provider
+function HeaderInner({ children, logoLightUrl, logoLightAlt, logoDarkUrl, logoDarkAlt }: HeaderWrapperProps) {
+    const scrolled = useScrolled();
 
     return (
         <header
@@ -44,5 +39,13 @@ export default function HeaderWrapper({ children, logoLightUrl, logoLightAlt, lo
                 {children}
             </div>
         </header>
+    );
+}
+
+export default function HeaderWrapper(props: HeaderWrapperProps) {
+    return (
+        <ScrollProvider>
+            <HeaderInner {...props} />
+        </ScrollProvider>
     );
 }
