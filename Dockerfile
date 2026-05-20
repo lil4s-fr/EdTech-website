@@ -33,16 +33,17 @@ ENV NODE_ENV=production
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
-# Copy the *contents* of the standalone directory directly into /app
-# The trailing slash (/) is the key: it copies the contents, not the folder
-COPY --from=build --chown=node:node /app/front/.next/standalone/ ./
-
-# Copy the public folder to the root so Next.js can find your assets
+# Copy the standalone build (this contains server.js at the root)
+COPY --from=build --chown=node:node /app/front/.next/standalone ./
+# Copy public assets to the root/public
 COPY --from=build --chown=node:node /app/front/public ./public
+# Copy static assets (standalone usually handles this, but keeping it safe)
+COPY --from=build --chown=node:node /app/front/.next/static ./.next/static
 
 USER node
 EXPOSE 3000
-# server.js is now at /app/server.js
+
+# Fix: Point to the server.js in the current WORKDIR (/app)
 CMD ["node", "server.js"]
 
 # ==========================================
