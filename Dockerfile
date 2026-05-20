@@ -48,6 +48,7 @@ FROM base AS back
 WORKDIR /app
 ENV NODE_ENV=production
 COPY --from=build --chown=node:node /prod/back .
+RUN chown -R node:node /app/public
 USER node
 EXPOSE 1337
 CMD ["pnpm", "start"]
