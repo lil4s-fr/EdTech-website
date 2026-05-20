@@ -1,0 +1,7 @@
+wubrg.online {
+    reverse_proxy front:3000
+}
+
+backoffice.wubrg.online {
+    reverse_proxy back:1337
+}

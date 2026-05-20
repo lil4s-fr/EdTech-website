@@ -1,0 +1,24 @@
+# Version control
+.git
+.gitignore
+
+# Dependencies (Crucial to prevent the 2GB context transfer)
+node_modules
+**/node_modules
+.pnpm-store
+
+# Framework build caches
+.next
+**/.next
+dist
+build
+out
+
+# Local environment variables (Security risk if copied)
+.env
+.env.*
+*.local
+
+# Local Strapi state
+back/.tmp
+back/public/uploads
