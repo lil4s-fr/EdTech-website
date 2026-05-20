@@ -33,13 +33,18 @@ ENV NODE_ENV=production
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
+# Copy the entire standalone folder to the working directory
 COPY --from=build --chown=node:node /app/front/.next/standalone ./
-COPY --from=build --chown=node:node /app/front/.next/static ./front/.next/static
-COPY --from=build --chown=node:node /app/front/public ./front/public
+
+# Copy the static folder to the correct path inside the standalone directory
+# Next.js standalone expects .next/static to be inside the root folder
+COPY --from=build --chown=node:node /app/front/.next/static ./.next/static
+COPY --from=build --chown=node:node /app/front/public ./public
 
 USER node
 EXPOSE 3000
-CMD ["node", "front/server.js"]
+# Run the server from the root, since we copied standalone to /app
+CMD ["node", "server.js"]
 
 # ==========================================
 # Runner Stage: Strapi (Back)
