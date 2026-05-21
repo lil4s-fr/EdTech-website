@@ -1,6 +1,11 @@
 import { fetchStrapi } from "../../../lib/strapi";
 import ActionsBlock, { ActionsData } from "../../../components/ActionsBlock";
 import ValuesBlock, { ValuesData } from "../../../components/ValuesBlock";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Activités",
+};
 
 // ─── Strapi Page Data Interface ───────────────────────────────────────────────
 

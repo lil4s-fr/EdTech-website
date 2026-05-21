@@ -18,7 +18,7 @@ const scrolledVariants: Record<string, string> = {
   primary:
     "bg-gradient-to-r from-[#2E3192] via-[#5271C2] to-[#75AADB] text-white shadow-md hover:brightness-110 active:scale-95",
   outline:
-    "border-3 border-gray-900 bg-transparent text-gray-900 hover:bg-gray-900 hover:text-white",
+    "ring-3 ring-inset ring-gray-900 bg-transparent text-gray-900 hover:bg-gray-900 hover:text-white",
   secondary:
     "bg-gradient-to-r from-[#1A1C4C] via-[#242766] to-[#2E3192] text-white hover:brightness-110 hover:shadow-lg active:scale-95",
 };
@@ -28,7 +28,7 @@ const topVariants: Record<string, string> = {
   primary:
     "bg-gradient-to-r from-[#2E3192] via-[#5271C2] to-[#75AADB] text-white shadow-md hover:brightness-110 active:scale-95",
   outline:
-    "border-3 border-white bg-white/10 backdrop-blur-md text-white hover:bg-white/20",
+    "ring-3 ring-inset ring-white bg-white/10 backdrop-blur-md text-white hover:bg-white/20",
   secondary:
     "bg-white/20 text-white border border-white/40 hover:bg-white/30 backdrop-blur-sm",
 };

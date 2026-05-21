@@ -3,6 +3,11 @@ import MembresPageClient, {
   Organisation,
   DirectoryBlock,
 } from "../../../components/MembresPageClient";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Membres",
+};
 
 export default async function MembresPage() {
   // Fetch the page header block and all organisations in parallel

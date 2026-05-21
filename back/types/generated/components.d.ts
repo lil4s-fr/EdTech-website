@@ -1,5 +1,16 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface ElementsAccordionElement extends Struct.ComponentSchema {
+  collectionName: 'components_elements_accordion_elements';
+  info: {
+    displayName: 'AccordionElement';
+  };
+  attributes: {
+    Content: Schema.Attribute.Blocks;
+    Title: Schema.Attribute.String;
+  };
+}
+
 export interface ElementsButton extends Struct.ComponentSchema {
   collectionName: 'components_elements_buttons';
   info: {
@@ -18,6 +29,20 @@ export interface ElementsButton extends Struct.ComponentSchema {
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<'primary'>;
     URL: Schema.Attribute.String;
+  };
+}
+
+export interface ElementsCard extends Struct.ComponentSchema {
+  collectionName: 'components_elements_cards';
+  info: {
+    displayName: 'Card';
+    icon: 'command';
+  };
+  attributes: {
+    Description: Schema.Attribute.Text;
+    Image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    Link: Schema.Attribute.String;
+    Title: Schema.Attribute.String;
   };
 }
 
@@ -108,6 +133,21 @@ export interface ElementsSocials extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsAccordion extends Struct.ComponentSchema {
+  collectionName: 'components_sections_accordions';
+  info: {
+    displayName: 'Accordion';
+    icon: 'grid';
+  };
+  attributes: {
+    AccordionElements: Schema.Attribute.Component<
+      'elements.accordion-element',
+      true
+    >;
+    Title: Schema.Attribute.String;
+  };
+}
+
 export interface SectionsActions extends Struct.ComponentSchema {
   collectionName: 'components_sections_actions';
   info: {
@@ -116,6 +156,35 @@ export interface SectionsActions extends Struct.ComponentSchema {
   };
   attributes: {
     Cards: Schema.Attribute.Component<'elements.info-card', true>;
+    SectionTitle: Schema.Attribute.String;
+  };
+}
+
+export interface SectionsCallToAction extends Struct.ComponentSchema {
+  collectionName: 'components_sections_call_to_actions';
+  info: {
+    displayName: 'CallToAction';
+  };
+  attributes: {
+    Alignment: Schema.Attribute.Enumeration<['left', 'right', 'center']>;
+    BackgroundColor: Schema.Attribute.Enumeration<
+      ['primary', 'secondary', 'none']
+    >;
+    Button: Schema.Attribute.Component<'elements.button', false>;
+    Title: Schema.Attribute.String;
+  };
+}
+
+export interface SectionsCardGrid extends Struct.ComponentSchema {
+  collectionName: 'components_sections_card_grids';
+  info: {
+    displayName: 'CardGrid';
+    icon: 'crop';
+  };
+  attributes: {
+    Cards: Schema.Attribute.Component<'elements.card', true>;
+    ColumnsNumber: Schema.Attribute.Enumeration<['two', 'three', 'four']>;
+    Description: Schema.Attribute.Text;
     SectionTitle: Schema.Attribute.String;
   };
 }
@@ -184,6 +253,22 @@ export interface SectionsOrganisations extends Struct.ComponentSchema {
   };
 }
 
+export interface SectionsTextMedia extends Struct.ComponentSchema {
+  collectionName: 'components_sections_text_medias';
+  info: {
+    displayName: 'TextMedia';
+    icon: 'attachment';
+  };
+  attributes: {
+    BackgroundColor: Schema.Attribute.Enumeration<
+      ['primary', 'secondary', 'none']
+    >;
+    Media: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    MediaPosition: Schema.Attribute.Enumeration<['left', 'right']>;
+    Text: Schema.Attribute.Blocks;
+  };
+}
+
 export interface SectionsValues extends Struct.ComponentSchema {
   collectionName: 'components_sections_values';
   info: {
@@ -199,7 +284,9 @@ export interface SectionsValues extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'elements.accordion-element': ElementsAccordionElement;
       'elements.button': ElementsButton;
+      'elements.card': ElementsCard;
       'elements.highlight-card': ElementsHighlightCard;
       'elements.info-card': ElementsInfoCard;
       'elements.membership-plan': ElementsMembershipPlan;
@@ -207,12 +294,16 @@ declare module '@strapi/strapi' {
       'elements.menu-link': ElementsMenuLink;
       'elements.partner': ElementsPartner;
       'elements.socials': ElementsSocials;
+      'sections.accordion': SectionsAccordion;
       'sections.actions': SectionsActions;
+      'sections.call-to-action': SectionsCallToAction;
+      'sections.card-grid': SectionsCardGrid;
       'sections.hero': SectionsHero;
       'sections.highlights': SectionsHighlights;
       'sections.memberships': SectionsMemberships;
       'sections.multiple-partners': SectionsMultiplePartners;
       'sections.organisations': SectionsOrganisations;
+      'sections.text-media': SectionsTextMedia;
       'sections.values': SectionsValues;
     }
   }

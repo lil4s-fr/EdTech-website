@@ -19,7 +19,7 @@ export default function Button({
     primary: "bg-gradient-to-r from-[#2E3192] via-[#5271C2] to-[#75AADB] text-white shadow-md hover:brightness-110 active:scale-95",
 
     // L'outline pour le "Petit Guide IA"
-    outline: "border-3 border-black bg-black/10 backdrop-blur-md text-black hover:bg-black/20",
+    outline: "ring-3 ring-inset ring-black bg-black/10 backdrop-blur-md text-black hover:bg-black/20",
 
     // Nouveau Secondary : Bleu foncé "Deep Night" gradient
     secondary: "bg-gradient-to-r from-[#1A1C4C] via-[#242766] to-[#2E3192] text-white hover:brightness-110 hover:shadow-lg active:scale-95",
